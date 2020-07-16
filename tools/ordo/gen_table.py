@@ -17,11 +17,16 @@ def sh(*args):
 
 
 def get_cores():
+    """ debug
+    for cpu in gen_cpuseq.seq(gen_cpuseq.cpuinfo):
+        print(cpu)
+        print()
+    """
     return [int(cpu["processor"]) for cpu in gen_cpuseq.seq(gen_cpuseq.cpuinfo)]
 
 
 def __get_values(a, b):
-    tok = sh("o/reftable", str(a), str(b), str(iters)).split(" ")
+    tok = sh("./o/reftable", str(a), str(b), str(iters)).split(" ")
     tok = tok[0].split('\n')
     tok = map(lambda x: int(x), tok)
     f = open('output/%d-%d.txt' % (a, b), 'w')
@@ -43,6 +48,7 @@ def __ensure_output_dir():
 max_offset = 0
 __ensure_output_dir()
 for (a, b) in combinations(get_cores(), 2):
+    print("(a, b)", a, b)
     key = (min(a, b), max(a, b))
     max_offset = max(build_table(*key), max_offset)
     print ("(%d, %d) ... done" % (a, b))

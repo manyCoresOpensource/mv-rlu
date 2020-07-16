@@ -1,0 +1,10 @@
+[COMMAND]
+gcc -o test test.c lib/libmvrlu-gclk.a lib/libmvrlu-ordo.a -lpthread
+
+[ORDO]
+ordo_clock.h
+ordo value (clock cycles) = 650 * ((# cpu cores) / 120)
+
+[MV-RLU API]
+- Functions : /include/mvrlu.h
+- Implmentation : /lib/mvrlu.c
