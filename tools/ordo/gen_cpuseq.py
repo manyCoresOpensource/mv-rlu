@@ -1,10 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import errno
 
 cpuinfo = [dict(map(str.strip, line.split(":", 1))
                 for line in block.splitlines())
-           for block in file("/proc/cpuinfo", "r").read().split("\n\n")
+           for block in open("/proc/cpuinfo", "r").read().split("\n\n")
            if len(block.strip())]
 
 # Keep only primary hyperthreads
@@ -12,9 +12,9 @@ primaries = set()
 for cpu in cpuinfo:
     processor = cpu["processor"]
     try:
-        s = file("/sys/devices/system/cpu/cpu%s/topology/thread_siblings_list"
+        s = open("/sys/devices/system/cpu/cpu%s/topology/thread_siblings_list"
                  % processor).read()
-    except EnvironmentError, e:
+    except EnvironmentError as e:
         if e.errno == errno.ENOENT:
             primaries.add(processor)
             continue
