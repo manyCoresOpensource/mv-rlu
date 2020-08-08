@@ -42,8 +42,7 @@ benchmark-clean:
 PHONY += lib
 lib: git-hooks
 	(cd $(PROJ_DIR)/lib && \
-	 CONF=ordo make -j$(NJOB) && \
-	 CONF=gclk make -j$(NJOB))
+	 CONF=ordo make -j$(NJOB))
 
 PHONY += lib-clean
 lib-clean: git-hooks

@@ -7,7 +7,7 @@ int main() {
 	printf("%d\n", ninit);
 
 	mvrlu_thread_struct_t *self = RLU_THREAD_ALLOC();
-
+	RLU_THREAD_INIT(self);
 
 	// do
 	int *numPtr1 =  RLU_ALLOC(sizeof(int)*4);
